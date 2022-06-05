@@ -1,0 +1,122 @@
+
+Router>en
+Router#erase startup-config
+Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+[OK]
+Erase of nvram: complete
+%SYS-7-NV_BLOCK_INIT: Initialized the geometry of nvram
+Router#reload
+Proceed with reload? [confirm]
+System Bootstrap, Version 12.1(3r)T2, RELEASE SOFTWARE (fc1)
+Copyright (c) 2000 by cisco Systems, Inc.
+Initializing memory for ECC
+..
+C2600 processor with 524288 Kbytes of main memory
+Main memory is configured to 64 bit mode with ECC enabled
+
+Readonly ROMMON initialized
+
+Self decompressing the image :
+########################################################################## [OK]
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco Internetwork Operating System Software
+IOS (tm) C2600 Software (C2600-I-M), Version 12.2(28), RELEASE SOFTWARE (fc5)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 27-Apr-04 19:01 by miwang
+
+Cisco 2620 (MPC860) processor (revision 0x200) with 253952K/8192K bytes of memory
+.
+Processor board ID JAD05190MTZ (4292891495)
+M860 processor: part number 0, mask 49
+Bridging software.
+X.25 software, Version 3.0.0.
+1 FastEthernet/IEEE 802.3 interface(s)
+8 Low-speed serial(sync/async) network interface(s)
+32K bytes of non-volatile configuration memory.
+63488K bytes of ATA CompactFlash (Read/Write)
+
+
+         --- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: n
+
+
+Press RETURN to get started!
+
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname Barry'sResdence
+Barry'sResdence(config)#hostname Barry'sResidence
+Barry'sResidence(config)#no ip domain-lookup
+Barry'sResidence(config)#interface s1/0
+Barry'sResidence(config-if)#ip address 102.105.120.17 255.255.255.252
+Barry'sResidence(config-if)#no shutdown
+
+Barry'sResidence(config-if)#
+%LINK-5-CHANGED: Interface Serial1/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to up
+
+Barry'sResidence(config-if)#no ip address 102.105.120.17 255.255.255.252
+Barry'sResidence(config-if)#ip address 102.105.120.18 255.255.255.252
+Barry'sResidence(config-if)#no shutdown
+Barry'sResidence(config-if)#interface f0/0
+Barry'sResidence(config-if)#ip address 102.105.116.1 255.255.252.0
+Barry'sResidence(config-if)#no shutdown
+
+Barry'sResidence(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+Barry'sResidence(config-if)#end
+Barry'sResidence#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Barry'sResidence#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+
+
+Barry'sResidence#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Barry'sResidence(config)#ip route 0.0.0.0 0.0.0.0 s1/0
+Barry'sResidence(config)#router rip
+Barry'sResidence(config-router)#version 2
+Barry'sResidence(config-router)#no auto-
+Barry'sResidence(config-router)#no auto-summary 
+Barry'sResidence(config-router)#network 102.105.120.16
+Barry'sResidence(config-router)#network 102.105.116.0
+Barry'sResidence(config-router)#passive-
+Barry'sResidence(config-router)#passive-interface f0/0
+Barry'sResidence(config-router)#default-
+Barry'sResidence(config-router)#default-information o
+Barry'sResidence(config-router)#default-information originate 
+Barry'sResidence(config-router)#end
+Barry'sResidence#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Barry'sResidence#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]

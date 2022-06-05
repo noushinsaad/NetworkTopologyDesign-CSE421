@@ -1,0 +1,158 @@
+Router>en
+Router#erase startup-config
+Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+[OK]
+Erase of nvram: complete
+%SYS-7-NV_BLOCK_INIT: Initialized the geometry of nvram
+Router#reload
+Proceed with reload? [confirm]
+System Bootstrap, Version 12.1(3r)T2, RELEASE SOFTWARE (fc1)
+Copyright (c) 2000 by cisco Systems, Inc.
+Initializing memory for ECC
+..
+C2600 processor with 524288 Kbytes of main memory
+Main memory is configured to 64 bit mode with ECC enabled
+
+Readonly ROMMON initialized
+
+Self decompressing the image :
+########################################################################## [OK]
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco Internetwork Operating System Software
+IOS (tm) C2600 Software (C2600-I-M), Version 12.2(28), RELEASE SOFTWARE (fc5)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 27-Apr-04 19:01 by miwang
+
+Cisco 2620 (MPC860) processor (revision 0x200) with 253952K/8192K bytes of memory
+.
+Processor board ID JAD05190MTZ (4292891495)
+M860 processor: part number 0, mask 49
+Bridging software.
+X.25 software, Version 3.0.0.
+1 FastEthernet/IEEE 802.3 interface(s)
+8 Low-speed serial(sync/async) network interface(s)
+32K bytes of non-volatile configuration memory.
+63488K bytes of ATA CompactFlash (Read/Write)
+
+
+         --- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: no
+
+
+Press RETURN to get started!
+
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname WayneMansion
+WayneMansion(config)#no ip domain-lookup
+WayneMansion(config)#interface s1/1
+WayneMansion(config-if)#ip address 102.105.120.1
+% Incomplete command.
+WayneMansion(config-if)#ip address 102.105.120.1 255.255.255.252
+WayneMansion(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial1/1, changed state to down
+WayneMansion(config-if)#interface s1/0
+WayneMansion(config-if)#ip address 102.105.120.5 255.255.255.252
+WayneMansion(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial1/0, changed state to down
+WayneMansion(config-if)#interface s1/2
+WayneMansion(config-if)#ip address 102.105.120.9 255.255.255.252
+WayneMansion(config-if)#no shutdown
+
+%LINK-5-CHANGED: Interface Serial1/2, changed state to down
+WayneMansion(config-if)#interface f0/0
+WayneMansion(config-if)#ip address 102.105.96.1 255.255.248.0
+WayneMansion(config-if)#no shutdown
+
+WayneMansion(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+%LINK-5-CHANGED: Interface Serial1/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to up
+
+%LINK-5-CHANGED: Interface Serial1/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to up
+
+
+
+
+
+
+
+
+
+WayneMansion con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+%LINK-5-CHANGED: Interface Serial1/2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/2, changed state to up
+
+
+WayneMansion>en
+WayneMansion#copy run start
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+
+
+WayneMansion#conf t
+WayneMansion(config)#ip route 102.105.64.0 255.255.224.0 s1/0
+WayneMansion(config)#ip route 102.105.0.0 255.255.192.0 s1/1 
+WayneMansion(config)#ip route 102.105.112.0 255.255.252.0 s1/2
+WayneMansion(config)#ip route 102.105.120.12 255.255.255.252  102.105.120.10
+WayneMansion(config)#ip route 102.105.104.0 255.255.248.0 102.105.120.10
+WayneMansion(config)#ip route 102.105.120.16 255.255.255.252  102.105.120.10
+WayneMansion(config)#ip route 102.105.116.0 255.255.252.0 102.105.120.10
+WayneMansion(config)#ip route 0.0.0.0 0.0.0.0 s1/0
+WayneMansion(config)#ip route 0.0.0.0 0.0.0.0 s1/1
+WayneMansion(config)#ip route 0.0.0.0 0.0.0.0 s1/2
+
+
+
+WayneMansion#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+WayneMansion(config)#ip route 102.105.0.0 255.255.224.0 s1/0 8
